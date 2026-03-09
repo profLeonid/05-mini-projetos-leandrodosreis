@@ -109,6 +109,18 @@ button:hover {
   justify-content: center;
 }
 
+.resultado.desconto5{
+  border: solid #14532d;
+}
+
+.resultado.desconto10{
+  border: solid #713f12;
+}
+
+.resultado.desconto11{
+  border: solid #7f1d1d;
+}
+
 footer {
   display: flex;
   align-items: flex-end;
