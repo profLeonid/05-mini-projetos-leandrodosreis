@@ -1,5 +1,9 @@
 'use strict'
 
-function definirEscolha(){
+function vertebrado(){
     
+}
+
+function definirEscolha(){
+
 }
