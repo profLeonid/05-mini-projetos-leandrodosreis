@@ -1,36 +1,105 @@
 'use strict'
 
-function definirEscolha(){
+document.getElementById("tipo").addEventListener("change", atualizarClasse)
+document.getElementById("classe").addEventListener("change", atualizarGrupo)
+document.getElementById("grupo").addEventListener("change", mostrarResultado)
+const resultado = document.getElementById('resultado')
 
-    if(valor === "vertebrado"){
+function atualizarClasse() {
 
-        const op1 = document.createElement("option")
-        op1.value = "ave"
-        op1.textContent = "Ave"
+    const tipo = document.getElementById("tipo").value
+    const classe = document.getElementById("classe")
+    const grupo = document.getElementById("grupo")
 
-        const op2 = document.createElement("option")
-        op2.value = "mamifero"
-        op2.textContent = "Mamífero"
+    classe.innerHTML = ""
+    grupo.innerHTML = ""
 
-        grupo.appendChild(op1)
-        grupo.appendChild(op2)
+    if (tipo === "vertebrado") {
 
+        adicionarOpcao(classe, "escolha", "Escolha")
+        adicionarOpcao(classe, "ave", "Ave")
+        adicionarOpcao(classe, "mamifero", "Mamífero")
+
+    } else if (tipo === "invertebrado") {
+
+        adicionarOpcao(classe, "escolha", "Escolha")
+        adicionarOpcao(classe, "inseto", "Inseto")
+        adicionarOpcao(classe, "anelideo", "Anelídeo")
     }
+}
 
-    else if(valor === "invertebrado"){
+function atualizarGrupo() {
 
-        const op1 = document.createElement("option")
-        op1.value = "inseto"
-        op1.textContent = "Inseto"
+    const classe = document.getElementById("classe").value
+    const grupo = document.getElementById("grupo")
 
-        const op2 = document.createElement("option")
-        op2.value = "anelideo"
-        op2.textContent = "Anelídeo"
+    grupo.innerHTML = ""
 
-        grupo.appendChild(op1)
-        grupo.appendChild(op2)
+    if (classe === "ave") {
 
+        adicionarOpcao(grupo, "escolha", "Escolha")
+        adicionarOpcao(grupo, "carnivoro", "Carnivoro")
+        adicionarOpcao(grupo, "onivoro", "Onivoro")
+
+    } else if (classe === "mamifero") {
+
+        adicionarOpcao(grupo, "escolha", "Escolha")
+        adicionarOpcao(grupo, "onivoro", "Onivoro")
+        adicionarOpcao(grupo, "herbivoro", "Herbivoro")
+
+    } else if (classe === "inseto") {
+
+        adicionarOpcao(grupo, "escolha", "Escolha")
+        adicionarOpcao(grupo, "hematofago", "Hematofago")
+        adicionarOpcao(grupo, "herbivoro", "Herbivoro")
+
+    } else if (classe === "anelideo") {
+
+        adicionarOpcao(grupo, "escolha", "Escolha")
+        adicionarOpcao(grupo, "hematofago", "Hematofago")
+        adicionarOpcao(grupo, "onivoro", "Onivoro")
     }
-
 
 }
+
+function mostrarResultado() {
+
+    const resultado = document.getElementById('resultado')
+    const classe = document.getElementById("classe").value
+    const grupo = document.getElementById("grupo").value
+
+    if (classe === "inseto" && grupo === "herbivoro") {
+        resultado.textContent = "Lagarta"
+
+    } else if (classe === "inseto" && grupo === "hematofago") {
+        resultado.textContent = "Pulga"
+
+    } else if (classe === "anelideo" && grupo === "hematofago") {
+        resultado.textContent = "Sanguessuga"
+
+    } else if (classe === "anelideo" && grupo === "onivoro") {
+        resultado.textContent = "Minhoca"
+
+    } else if (classe === "ave" && grupo === "carnivoro") {
+        resultado.textContent = "Aguia"
+
+    }else if (classe === "ave" && grupo === "onivoro") {
+        resultado.textContent = "Pomba"
+
+    }else if (classe === "mamifero" && grupo === "onivoro") {
+        resultado.textContent = "Homem"
+
+    }else if (classe === "mamifero" && grupo === "herbivoro") {
+        resultado.textContent = "Vaca"
+    }
+}
+
+function adicionarOpcao(select, valor, texto) {
+
+    const option = document.createElement("option")
+    option.value = valor
+    option.textContent = texto
+
+    select.appendChild(option)
+}
+
